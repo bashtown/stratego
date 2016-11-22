@@ -14,11 +14,13 @@ gMap = [[0,0,0,0,0,0,0,0,0,0],
 
 
 
-
 class Piece():
-
-    def __init__(self, n): #add player ownership
-        self.num = n #Spy = 11, Bomb = 12
+    iden = 0
+    def __init__(self, n, o=True): #n=value of piece, o=owned (True of False)
+        self.num = n #Spy = 1, Bomb = 12, Flag = 13
+        self.owned = o
+        self.id = Piece.iden
+        Piece.iden += 1
     x = -1
     y = -1
     
@@ -41,7 +43,7 @@ def movePiece(m, p, x, y):
     if(p.num == 2):
         #add functionality for 2 piece to move full board
         print("Wait for feature")
-    else:
+    else: #change to elif that checks that piece is an enemy piece
         if(m[y][x] == 'X'):
             print("Can't move piece there!")
         elif(isinstance(m[y][x], Piece)):
@@ -75,7 +77,4 @@ def printMap(m):
                 line += str(m[i][y])
         print line
 
-    
-pprint(gMap)
-
-printMap(gMap)   
+     
